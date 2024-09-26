@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_new/color/colors.dart';
 import 'package:flutter_new/model/model.dart';
 import 'package:flutter_new/provider/provider.dart';
 import 'package:provider/provider.dart';
+// Import the new file
 
 class JournalScreen extends StatefulWidget {
   @override
@@ -91,18 +93,30 @@ class _JournalScreenState extends State<JournalScreen> {
               Wrap(
                 spacing: 10,
                 children: List.generate(10, (index) {
+                  // Use the color functions from ChipColors
+                  Color defaultColor =
+                      ChipColors.getDefaultChipColor(index + 1);
+                  Color selectedColor =
+                      ChipColors.getSelectedChipColor(index + 1);
+
                   return ChoiceChip(
                     label: Text('${index + 1}'),
                     selected: painLevel == index + 1,
+                    selectedColor: selectedColor,
+                    backgroundColor: defaultColor,
                     onSelected: (selected) {
                       setState(() {
                         painLevel = index + 1;
                       });
                     },
+                    labelStyle: TextStyle(
+                      color:
+                          painLevel == index + 1 ? Colors.white : Colors.black,
+                    ),
                   );
                 }),
               ),
-              SizedBox(height: 16), // Add space before the button
+              SizedBox(height: 16), // Space before the button
               ElevatedButton(
                 onPressed: () {
                   // Add journal entry
