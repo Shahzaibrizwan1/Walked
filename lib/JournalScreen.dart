@@ -39,7 +39,7 @@ class _JournalScreenState extends State<JournalScreen> {
               SizedBox(height: 8),
               Center(
                 child: Image.network(
-                    width: 239,
+                    width: 339,
                     height: 139,
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ74y4i3jx5j_-kh005DhdMGiKh7_GTm0nEhQ&s'),
               ),
@@ -49,44 +49,45 @@ class _JournalScreenState extends State<JournalScreen> {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 16),
-              Row(
-                children: [
-                  Icon(Icons.local_hospital),
-                  SizedBox(width: 8),
-                  Text('Did you take your medicine?'),
-                  Spacer(),
-                  Checkbox(
-                    value: tookMedicine,
-                    onChanged: (value) {
-                      setState(() {
-                        tookMedicine = value!;
-                      });
-                    },
-                  ),
-                ],
+              Container(
+                height: 39,
+                color: Colors.grey[200],
+                child: Row(
+                  children: [
+                    Icon(Icons.local_hospital),
+                    SizedBox(width: 8),
+                    Text('Did you take your medicine?'),
+                    Spacer(),
+                    Checkbox(
+                      value: tookMedicine,
+                      onChanged: (value) {
+                        setState(() {
+                          tookMedicine = value!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 16),
-              Row(
-                children: [
-                  Icon(Icons.directions_walk),
-                  SizedBox(width: 8),
-                  Text('How many miles did you walk?'),
-                  Spacer(),
-                  Text('$milesWalked miles'),
-                ],
+              SizedBox(width: 8),
+              Text('How many miles did you walk?'),
+              SizedBox(height: 6),
+              Container(
+                color: Colors.grey[200],
+                height: 39,
+                child: Row(
+                  children: [
+                    Icon(Icons.directions_walk),
+
+                    SizedBox(width: 8),
+                    // Text('How are you feeling right now?'),
+
+                    Text('$milesWalked miles'),
+                  ],
+                ),
               ),
-              Slider(
-                value: milesWalked.toDouble(),
-                min: 0,
-                max: 10,
-                divisions: 10,
-                label: milesWalked.toString(),
-                onChanged: (value) {
-                  setState(() {
-                    milesWalked = value.toInt();
-                  });
-                },
-              ),
+
               SizedBox(height: 16),
               Text('Pain Level',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -104,6 +105,10 @@ class _JournalScreenState extends State<JournalScreen> {
                     selected: painLevel == index + 1,
                     selectedColor: selectedColor,
                     backgroundColor: defaultColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          20), // Set the radius for rounded corners
+                    ),
                     onSelected: (selected) {
                       setState(() {
                         painLevel = index + 1;
